@@ -41,7 +41,7 @@ const login = async(req,res) => {
             id: findUser._id
         }
         const token = jwt.sign(payload, JWT_SECRET, {expiresIn: "1d"})
-        res.cookie('access_token', token, {httpOnly: true, sameSite: 'Lax'}).status(200).json({user: findUser.username})
+        res.cookie('access_token', token, {httpOnly: true, sameSite: 'none', secure: true,}).status(200).json({user: findUser.username})
     }catch(error){
         res.status(500).json(err.message)
     }
